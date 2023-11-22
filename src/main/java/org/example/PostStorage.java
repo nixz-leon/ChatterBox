@@ -72,19 +72,19 @@ public class PostStorage {
         arr[counter] = temp;
         return counter + 1;
     }
+
     public void loadPosts(String filename) throws FileNotFoundException, ParseException {
         File csvFile = new File("src/main/resources/"+filename);
         Scanner line = new Scanner(csvFile);
         while (line.hasNextLine()){
-            Post newPost = new Post();
             String data = line.nextLine();
             String split_up[] = new String[4];
             splitter(data,',',split_up, 4);
-            newPost.setContent(split_up[0]);
-            //newPost.setId(split_up[1]);  // need either that setter method or a constructor
-            //newPost.setAuthor(split_up[2]); //same as above
+            Post newPost = new Post(split_up[0],split_up[2]);
+            newPost.setId(split_up[1]);  // need either that setter method or a constructor
             //Date date = new SimpleDateFormat("MM/dd/yyyy").parse(split_up[3]);
             //newPost.setTimeStamp(date);
         }
     }
+
 }
