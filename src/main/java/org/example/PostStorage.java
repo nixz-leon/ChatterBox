@@ -84,6 +84,7 @@ public class PostStorage {
             newPost.setId(split_up[1]);  // need either that setter method or a constructor
             //Date date = new SimpleDateFormat("MM/dd/yyyy").parse(split_up[3]);
             //newPost.setTimeStamp(date);
+            posts.add(newPost);
         }
     }
 
