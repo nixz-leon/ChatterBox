@@ -66,7 +66,7 @@ public class UserProfile {
         try
         {
             //Read the current content in the file
-            File file = new File(System.getProperty("user.home") + "/data.txt");
+            File file = new File(System.getProperty("src/main/files") + "/data.txt");
             StringBuilder fileContent = new StringBuilder();
             try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file)))  //BufferedReader is an optimized way to read files.
             {

@@ -29,7 +29,9 @@ public class PostStorage {
     }
 
     public void storePosts(String filename) throws IOException {
-        File csvFile = new File("src/main/resources/"+filename);
+        File dir = new File("src/main/files2/");
+        dir.mkdirs();
+        File csvFile = new File("src/main/files2/"+filename);
         FileWriter filewriter = new FileWriter(csvFile);
         for (Post post : posts) {
             String postInfo = post.getContent();
@@ -74,7 +76,7 @@ public class PostStorage {
     }
 
     public void loadPosts(String filename) throws FileNotFoundException, ParseException {
-        File csvFile = new File("src/main/resources/"+filename);
+        File csvFile = new File("src/main/files/"+filename);
         Scanner line = new Scanner(csvFile);
         while (line.hasNextLine()){
             String data = line.nextLine();
