@@ -1,8 +1,9 @@
 package org.example;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Create New Profile.");
@@ -23,6 +24,11 @@ public class Main {
         System.out.println("\n");
         System.out.println(profile.getUserName() + " getUserName \n" + profile.getInfo() + " getInfo \n"
                 + newPost.getAuthor() + " getAuthor \n" + newPost.getTimestamp() + " getTimeStamp \n" +
-                 newPost.getId() + " getId \n" + newPost.getContent() + " getContent");
+                newPost.getId() + " getId \n" + newPost.getContent() + " getContent");
+        //added
+        PostStorage postStorage = new PostStorage();
+        postStorage.appendPost(newPost);
+        postStorage.storePosts("testPost.csv");
+        System.out.println("\nPost Stored\n");
     }
 }
