@@ -32,7 +32,7 @@ public class PostStorage {
         File dir = new File("src/main/files2/");
         dir.mkdirs();
         File csvFile = new File("src/main/files2/"+filename);
-        FileWriter filewriter = new FileWriter(csvFile);
+        FileWriter filewriter = new FileWriter(csvFile, true);
         for (Post post : posts) {
             String postInfo = post.getContent();
             String postId = post.getId();
@@ -41,6 +41,19 @@ public class PostStorage {
             String line = postInfo + ',' + postId + ',' + postAuthor +','+postTimestamp+"\n";
             filewriter.write(line);
         }
+        filewriter.close();
+    }
+    public void storeInvPost(String filename, Post post) throws IOException {
+        File dir = new File("src/main/files2/");
+        dir.mkdirs();
+        File csvFile = new File("src/main/files2/"+filename);
+        FileWriter filewriter = new FileWriter(csvFile, true);
+        String postInfo = post.getContent();
+        String postId = post.getId();
+        String postAuthor = post.getAuthor();
+        String postTimestamp = post.getTimestamp().toString();
+        String line = postInfo + ',' + postId + ',' + postAuthor +','+postTimestamp+"\n";
+        filewriter.write(line);
         filewriter.close();
     }
 
