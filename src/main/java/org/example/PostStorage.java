@@ -14,7 +14,7 @@ import java.io.FileWriter;
 import java.util.Date;
 
 public class PostStorage {
-    private List<Post> posts;
+    private final List<Post> posts;
 
     public PostStorage() {
         this.posts = new ArrayList<>();
@@ -37,7 +37,7 @@ public class PostStorage {
             String postInfo = post.getContent();
             String postId = post.getId();
             String postAuthor = post.getAuthor();
-            String postTimestamp = post.getTimestamp().toString();
+            String postTimestamp = post.getTimestamp();
             String line = postInfo + ',' + postId + ',' + postAuthor +','+postTimestamp+"\n";
             filewriter.write(line);
         }
@@ -51,13 +51,14 @@ public class PostStorage {
         String postInfo = post.getContent();
         String postId = post.getId();
         String postAuthor = post.getAuthor();
-        String postTimestamp = post.getTimestamp().toString();
+        String postTimestamp = post.getTimestamp();
         String line = postInfo + ',' + postId + ',' + postAuthor +','+postTimestamp+"\n";
         filewriter.write(line);
         filewriter.close();
     }
 
-    static int  splitter(String text, char sep, String arr[], int size){
+    static int  splitter(String text, char sep, String[] arr, int size){
+
         int counter = 0;
         String temp = "";
         int textLength = text.length();
@@ -89,11 +90,11 @@ public class PostStorage {
     }
 
     public void loadPosts(String filename) throws FileNotFoundException, ParseException {
-        File csvFile = new File("src/main/files/"+filename);
+        File csvFile = new File("src/main/files2/"+filename);
         Scanner line = new Scanner(csvFile);
         while (line.hasNextLine()){
             String data = line.nextLine();
-            String split_up[] = new String[4];
+            String[] split_up = new String[4];
             splitter(data,',',split_up, 4);
             Post newPost = new Post(split_up[0],split_up[2]);
             newPost.setId(split_up[1]);  // need either that setter method or a constructor
